@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Lessons - BrightMinds</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff9f1c;
+            --accent: #2ec4b6;
+            --light: #fdfffc;
+            --dark: #011627;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .lesson-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        
+        .lesson-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .interactive-exercise {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        .exercise-title {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .math-objects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        
+        .math-object {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .quiz-container {
+            margin-top: 2rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f0f5ff;
+            border-radius: 10px;
+        }
+        
+        .answer-feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .correct {
+            color: green;
+        }
+        
+        .incorrect {
+            color: red;
+        }
+        
+        button {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        button:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .quiz-results {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .multiplication-group {
+            display: inline-block;
+            margin: 0 1rem 1rem 0;
+            padding: 0.5rem;
+            background: rgba(74, 111, 165, 0.1);
+            border-radius: 8px;
+        }
+        
+        /* Quiz specific styles */
+        .quiz-input {
+            padding: 8px;
+            border: 2px solid #4a6fa5;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .quiz-input:disabled {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        #submit-quiz {
+            background-color: #4a6fa5;
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+        
+        #submit-quiz:disabled {
+            background-color: #cccccc;
+            transform: none;
+            cursor: not-allowed;
+        }
+          /* New styles for dynamic quiz */
+        .big-button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .big-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background-color: #e68a00;
+        }
+        
+        .big-button:disabled {
+            background-color: #cccccc;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 0.5rem;
+            }
+            
+            .lesson-section {
+                padding: 1rem;
+            }
+            
+            .math-object {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-brain"></i>
+            <h1>BrightMinds Math</h1>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="lesson-progress"></div>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <!-- Section 1: Numbers -->
+        <section class="lesson-section" id="numbers">
+            <h2 class="section-title"><i class="fas fa-sort-numeric-up"></i> Understanding Numbers</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/bGetqbqDVaA?si=Km_98vOuaZHBFFKW" title="YouTube video player"  title="Counting numbers video" allowfullscreen></iframe>
+            </div>
+            
+            <p>Numbers are all around us! Let's learn how to count and recognize numbers from 1 to 100.</p>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Counting Practice</h3>
+                <div class="math-objects" id="counting-objects"></div>
+                <p>Count the objects and enter the number:</p>
+                <input type="number" id="counting-answer" min="1" max="20">
+                <button onclick="checkCounting()">Check Answer</button>
+                <div class="answer-feedback" id="counting-feedback"></div>
+            </div>
+        </section>
+
+        <!-- Section 2: Addition -->
+        <section class="lesson-section" id="addition">
+            <h2 class="section-title"><i class="fas fa-plus"></i> Addition</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Fe8u2I3vmHU" title="Addition video" allowfullscreen></iframe>
+            </div>
+            
+            <p>Addition is combining numbers to find the total amount.</p>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Addition Practice</h3>
+                <div id="addition-container"></div>
+                <p>= <input type="number" id="addition-answer" min="1" max="20"></p>
+                <button onclick="checkAddition()">Check Answer</button>
+                <div class="answer-feedback" id="addition-feedback"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: Subtraction -->
+        <section class="lesson-section" id="subtraction">
+            <h2 class="section-title"><i class="fas fa-minus"></i> Subtraction</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qM7B2nwpV1M?si=B8C8f-AXCZulCpJC" title="YouTube video player" title="Subtraction video" allowfullscreen></iframe>
+            </div>
+            
+            <p>Subtraction is taking one number away from another.</p>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Subtraction Practice</h3>
+                <div id="subtraction-container"></div>
+                <p>= <input type="number" id="subtraction-answer" min="1" max="20"></p>
+                <button onclick="checkSubtraction()">Check Answer</button>
+                <div class="answer-feedback" id="subtraction-feedback"></div>
+            </div>
+        </section>
+
+        <!-- Section 4: Multiplication -->
+        <section class="lesson-section" id="multiplication">
+            <h2 class="section-title"><i class="fas fa-times"></i> Multiplication</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/CFDCG1b4ahk?si=f4D5KLk5sQRzJhSQ" title="YouTube video player" title="Multiplication video" allowfullscreen></iframe>
+            </div>
+            
+            <p>Multiplication is repeated addition of the same number.</p>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Multiplication Practice</h3>
+                <div id="multiplication-container"></div>
+                <p>= <input type="number" id="multiplication-answer" min="1" max="50"></p>
+                <button onclick="checkMultiplication()">Check Answer</button>
+                <div class="answer-feedback" id="multiplication-feedback"></div>
+            </div>
+        </section>
+
+        <!-- Section 5: Division -->
+        <section class="lesson-section" id="division">
+            <h2 class="section-title"><i class="fas fa-divide"></i> Division</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qZ2R1tbUZaw?si=2XdtsZfbMs2_i7QA" title="YouTube video player"  title="Division video" allowfullscreen></iframe>
+            </div>
+            
+            <p>Division is splitting into equal parts or groups.</p>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Division Practice</h3>
+                <div id="division-container"></div>
+                <p>= <input type="number" id="division-answer" min="1" max="20"></p>
+                <button onclick="checkDivision()">Check Answer</button>
+                <div class="answer-feedback" id="division-feedback"></div>
+            </div>
+        </section>
+
+        <!-- Section 6: Final Assessment -->
+        <section class="lesson-section" id="assessment">
+            <h2 class="section-title"><i class="fas fa-star"></i> Final Math Challenge</h2>
+            
+            <div class="interactive-exercise">
+                <h3 class="exercise-title">Solve These Problems</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is 5 + 7?</p>
+                    <input type="number" id="final1-answer" min="1" max="20" class="quiz-input">
+                    <div class="answer-feedback" id="final1-feedback"></div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>2. What is 12 - 5?</p>
+                    <input type="number" id="final2-answer" min="1" max="20" class="quiz-input">
+                    <div class="answer-feedback" id="final2-feedback"></div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>3. What is 3 × 4?</p>
+                    <input type="number" id="final3-answer" min="1" max="20" class="quiz-input">
+                    <div class="answer-feedback" id="final3-feedback"></div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>4. What is 15 ÷ 3?</p>
+                    <input type="number" id="final4-answer" min="1" max="20" class="quiz-input">
+                    <div class="answer-feedback" id="final4-feedback"></div>
+                </div>
+                
+                <button onclick="checkFinalAssessment()" id="submit-quiz">Submit Quiz</button>
+                <div class="quiz-results" id="final-results"></div>
+            </div>
+        </section>
+          <section class="lesson-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Final Assessment</h2>
+            <div class="interactive-exercise" style="text-align: center;">
+                <button id="load-final-quiz" class="big-button">
+                    <i class="fas fa-star"></i> Take Final Reading Quiz
+                </button>
+                <div id="dynamic-quiz-container"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Track progress
+        const completedSections = new Set();
+        let currentExercise = {
+            counting: 0,
+            addition: { num1: 0, num2: 0 },
+            subtraction: { total: 0, subtract: 0 },
+            multiplication: { groups: 0, perGroup: 0 },
+            division: { total: 0, groups: 0 }
+        };
+        let quizSubmitted = false;
+
+        // Initialize exercises
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCountingExercise();
+            generateAdditionExercise();
+            generateSubtractionExercise();
+            generateMultiplicationExercise();
+            generateDivisionExercise();
+            updateProgress();
+        });
+        
+        // Update progress bar
+        function updateProgress() {
+            const progress = (completedSections.size / 6) * 100;
+            document.getElementById('lesson-progress').style.width = `${progress}%`;
+        }
+        
+        // ===== COUNTING =====
+        function generateCountingExercise() {
+            currentExercise.counting = Math.floor(Math.random() * 10) + 5;
+            const container = document.getElementById('counting-objects');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < currentExercise.counting; i++) {
+                const obj = document.createElement('div');
+                obj.className = 'math-object';
+                obj.innerHTML = '<i class="fas fa-star"></i>';
+                container.appendChild(obj);
+            }
+            
+            document.getElementById('counting-answer').value = '';
+            document.getElementById('counting-feedback').style.display = 'none';
+        }
+        
+        function checkCounting() {
+            const answer = parseInt(document.getElementById('counting-answer').value);
+            const feedback = document.getElementById('counting-feedback');
+            
+            if (isNaN(answer)) {
+                feedback.textContent = 'Please enter a number!';
+                feedback.className = 'answer-feedback incorrect';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            if (answer === currentExercise.counting) {
+                feedback.textContent = `Correct! There are ${currentExercise.counting} stars.`;
+                feedback.className = 'answer-feedback correct';
+                completedSections.add('numbers');
+                setTimeout(generateCountingExercise, 1500);
+            } else {
+                feedback.textContent = `Try again! Count carefully. There are ${currentExercise.counting} stars.`;
+                feedback.className = 'answer-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            updateProgress();
+        }
+        
+        // ===== ADDITION =====
+        function generateAdditionExercise() {
+            currentExercise.addition.num1 = Math.floor(Math.random() * 10) + 1;
+            currentExercise.addition.num2 = Math.floor(Math.random() * 10) + 1;
+            
+            const container = document.getElementById('addition-container');
+            container.innerHTML = `
+                <div class="math-objects">
+                    ${Array(currentExercise.addition.num1).fill().map((_,i) => 
+                        `<div class="math-object" style="background-color:#4a6fa5">${i+1}</div>`
+                    ).join('')}
+                </div>
+                <p>+</p>
+                <div class="math-objects">
+                    ${Array(currentExercise.addition.num2).fill().map((_,i) => 
+                        `<div class="math-object" style="background-color:#ff9f1c">${i+1}</div>`
+                    ).join('')}
+                </div>
+            `;
+            
+            document.getElementById('addition-answer').value = '';
+            document.getElementById('addition-feedback').style.display = 'none';
+        }
+        
+        function checkAddition() {
+            const answer = parseInt(document.getElementById('addition-answer').value);
+            const correct = currentExercise.addition.num1 + currentExercise.addition.num2;
+            const feedback = document.getElementById('addition-feedback');
+            
+            if (isNaN(answer)) {
+                feedback.textContent = 'Please enter a number!';
+                feedback.className = 'answer-feedback incorrect';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            if (answer === correct) {
+                feedback.textContent = `Correct! ${currentExercise.addition.num1} + ${currentExercise.addition.num2} = ${correct}`;
+                feedback.className = 'answer-feedback correct';
+                completedSections.add('addition');
+                setTimeout(generateAdditionExercise, 1500);
+            } else {
+                feedback.textContent = `Try again! ${currentExercise.addition.num1} + ${currentExercise.addition.num2} = ${correct}`;
+                feedback.className = 'answer-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            updateProgress();
+        }
+        
+        // ===== SUBTRACTION =====
+        function generateSubtractionExercise() {
+            currentExercise.subtraction.total = Math.floor(Math.random() * 10) + 5;
+            currentExercise.subtraction.subtract = Math.floor(Math.random() * 4) + 1;
+            
+            const container = document.getElementById('subtraction-container');
+            container.innerHTML = `
+                <div class="math-objects">
+                    ${Array(currentExercise.subtraction.total).fill().map((_,i) => 
+                        `<div class="math-object">${i+1}</div>`
+                    ).join('')}
+                </div>
+                <p>- ${currentExercise.subtraction.subtract} =</p>
+            `;
+            
+            document.getElementById('subtraction-answer').value = '';
+            document.getElementById('subtraction-feedback').style.display = 'none';
+        }
+        
+        function checkSubtraction() {
+            const answer = parseInt(document.getElementById('subtraction-answer').value);
+            const correct = currentExercise.subtraction.total - currentExercise.subtraction.subtract;
+            const feedback = document.getElementById('subtraction-feedback');
+            
+            if (isNaN(answer)) {
+                feedback.textContent = 'Please enter a number!';
+                feedback.className = 'answer-feedback incorrect';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            if (answer === correct) {
+                feedback.textContent = `Correct! ${currentExercise.subtraction.total} - ${currentExercise.subtraction.subtract} = ${correct}`;
+                feedback.className = 'answer-feedback correct';
+                completedSections.add('subtraction');
+                setTimeout(generateSubtractionExercise, 1500);
+            } else {
+                feedback.textContent = `Try again! ${currentExercise.subtraction.total} - ${currentExercise.subtraction.subtract} = ${correct}`;
+                feedback.className = 'answer-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            updateProgress();
+        }
+        
+        // ===== MULTIPLICATION =====
+        function generateMultiplicationExercise() {
+            currentExercise.multiplication.groups = Math.floor(Math.random() * 3) + 2;
+            currentExercise.multiplication.perGroup = Math.floor(Math.random() * 5) + 1;
+            
+            const container = document.getElementById('multiplication-container');
+            container.innerHTML = `
+                ${Array(currentExercise.multiplication.groups).fill().map((_,g) => `
+                    <div class="multiplication-group">
+                        Group ${g+1}: 
+                        ${Array(currentExercise.multiplication.perGroup).fill().map((_,i) => 
+                            `<span class="math-object" style="display:inline-flex;margin:0 5px">${i+1}</span>`
+                        ).join('')}
+                    </div>
+                `).join('')}
+            `;
+            
+            document.getElementById('multiplication-answer').value = '';
+            document.getElementById('multiplication-feedback').style.display = 'none';
+        }
+        
+        function checkMultiplication() {
+            const answer = parseInt(document.getElementById('multiplication-answer').value);
+            const correct = currentExercise.multiplication.groups * currentExercise.multiplication.perGroup;
+            const feedback = document.getElementById('multiplication-feedback');
+            
+            if (isNaN(answer)) {
+                feedback.textContent = 'Please enter a number!';
+                feedback.className = 'answer-feedback incorrect';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            if (answer === correct) {
+                feedback.textContent = `Correct! ${currentExercise.multiplication.groups} groups × ${currentExercise.multiplication.perGroup} = ${correct}`;
+                feedback.className = 'answer-feedback correct';
+                completedSections.add('multiplication');
+                setTimeout(generateMultiplicationExercise, 1500);
+            } else {
+                feedback.textContent = `Try again! ${currentExercise.multiplication.groups} × ${currentExercise.multiplication.perGroup} = ${correct}`;
+                feedback.className = 'answer-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            updateProgress();
+        }
+        
+        // ===== DIVISION =====
+        function generateDivisionExercise() {
+            currentExercise.division.total = Math.floor(Math.random() * 5 + 1) * 3; // Multiples of 3 up to 15
+            currentExercise.division.groups = 3;
+            
+            const container = document.getElementById('division-container');
+            container.innerHTML = `
+                <div class="math-objects">
+                    ${Array(currentExercise.division.total).fill().map((_,i) => 
+                        `<div class="math-object">${i+1}</div>`
+                    ).join('')}
+                </div>
+                <p>÷ ${currentExercise.division.groups} =</p>
+            `;
+            
+            document.getElementById('division-answer').value = '';
+            document.getElementById('division-feedback').style.display = 'none';
+        }
+        
+        function checkDivision() {
+            const answer = parseInt(document.getElementById('division-answer').value);
+            const correct = currentExercise.division.total / currentExercise.division.groups;
+            const feedback = document.getElementById('division-feedback');
+            
+            if (isNaN(answer)) {
+                feedback.textContent = 'Please enter a number!';
+                feedback.className = 'answer-feedback incorrect';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            if (answer === correct) {
+                feedback.textContent = `Correct! ${currentExercise.division.total} ÷ ${currentExercise.division.groups} = ${correct}`;
+                feedback.className = 'answer-feedback correct';
+                completedSections.add('division');
+                setTimeout(generateDivisionExercise, 1500);
+            } else {
+                feedback.textContent = `Try again! ${currentExercise.division.total} ÷ ${currentExercise.division.groups} = ${correct}`;
+                feedback.className = 'answer-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            updateProgress();
+        }
+        
+        // ===== FINAL ASSESSMENT =====
+        function checkFinalAssessment() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            let score = 0;
+            const answers = [
+                { id: 'final1', correct: 12 },
+                { id: 'final2', correct: 7 },
+                { id: 'final3', correct: 12 },
+                { id: 'final4', correct: 5 }
+            ];
+            
+            // Disable all inputs and the submit button
+            document.querySelectorAll('.quiz-input').forEach(input => {
+                input.disabled = true;
+            });
+            document.getElementById('submit-quiz').disabled = true;
+            
+            // Check each answer
+            answers.forEach(q => {
+                const input = document.getElementById(`${q.id}-answer`);
+                const answer = parseInt(input.value) || 0;
+                const feedback = document.getElementById(`${q.id}-feedback`);
+                
+                // Highlight the input field
+                if (answer === q.correct) {
+                    input.style.border = "2px solid green";
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'answer-feedback correct';
+                    score++;
+                } else {
+                    input.style.border = "2px solid red";
+                    feedback.textContent = `Incorrect. The correct answer is ${q.correct}.`;
+                    feedback.className = 'answer-feedback incorrect';
+                }
+                feedback.style.display = 'block';
+            });
+            
+            // Show results
+            const resultsDiv = document.getElementById('final-results');
+            const percentage = Math.round((score / answers.length) * 100);
+            
+            resultsDiv.innerHTML = `
+                <h4>Final Score: ${percentage}%</h4>
+                <p>You got ${score} out of ${answers.length} correct!</p>
+                ${percentage >= 75 ? '<p><i class="fas fa-trophy"></i> Excellent work!</p>' : 
+                 percentage >= 50 ? '<p>Good job! Keep practicing!</p>' : 
+                 '<p>Nice try! Review the lessons and try again!</p>'}
+                <p><small>Quiz submitted - answers cannot be changed</small></p>
+            `;
+            resultsDiv.style.display = 'block';
+            
+            if (score === answers.length) {
+                completedSections.add('assessment');
+            }
+            updateProgress();
+        }
+    </script>
+</body>
+</html>

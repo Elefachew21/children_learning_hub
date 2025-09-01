@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightMinds Learning Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-brain"></i>
+            <h1>BrightMinds</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#subjects">Subjects</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li id="auth-link"><a href="#login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Interactive Learning for Ages 5-12</h2>
+                <p>Personalized education in reading, math, Amharic and general knowledge</p>
+                <div class="cta-buttons">
+                    <button id="start-learning" class="btn-primary">Start Learning</button>
+                    <button id="placement-test" class="btn-secondary">Take Placement Test</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="Kids learning happily">
+            </div>
+        </section>
+
+        <section id="subjects" class="subjects">
+            <h2>Explore Our Subjects</h2>
+            <div class="subject-cards">
+                <div class="card" data-subject="reading">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Reading</h3>
+                    <p>Phonics, vocabulary and comprehension</p>
+                    <!-- Change this in index.html -->
+                    <a href="reading/reading.html" class="btn-subject" onclick="return checkLogin()">Explore</a>
+                </div>
+                <div class="card" data-subject="math">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Math</h3>
+                    <p>Numbers, operations and problem solving</p>
+                    <a href="math/math.html" class="btn-subject">Explore</a>
+                </div>
+                <div class="card" data-subject="amharic">
+                    <i class="fas fa-language"></i>
+                    <h3>Amharic</h3>
+                    <p>Fidel, vocabulary and culture</p>
+                    <a href="amharic/amharic.html" class="btn-subject">Explore</a>
+                </div>
+                <div class="card" data-subject="knowledge">
+                    <i class="fas fa-globe-africa"></i>
+                    <h3>General Knowledge</h3>
+                    <p>Science, culture and environment</p>
+                    <a href="knowledge/knowledge.html" class="btn-subject">Explore</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Why BrightMinds Stands Out</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <i class="fas fa-robot"></i>
+                    <h3>Adaptive Learning</h3>
+                    <p>Our AI adjusts to your child's level</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Game-Based</h3>
+                    <p>Learning through play</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Progress Tracking</h3>
+                    <p>See your child's improvement</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Any Device</h3>
+                    <p>Learn anywhere, anytime</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>What Parents Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p>"My daughter improved her reading by 2 grade levels in just 3 months!"</p>
+                    <div class="author">- Sarah M., Parent</div>
+                </div>
+                <div class="testimonial">
+                    <p>"The Amharic lessons helped my son connect with his heritage while learning."</p>
+                    <div class="author">- Daniel T., Parent</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Finally a learning platform that makes math fun for my kids!"</p>
+                    <div class="author">- Amina K., Parent</div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots"></div>
+                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="login" class="auth-modal">
+            <div class="auth-container">
+                <span class="close-auth">&times;</span>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+                
+                <div id="login-form" class="auth-form active">
+                    <h3>Welcome Back!</h3>
+                    <form id="loginUser">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn-auth">Login</button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Forgot password? <a href="#" id="reset-password">Reset here</a></p>
+                    </div>
+                </div>
+                
+                <div id="signup-form" class="auth-form">
+                    <h3>Create Account</h3>
+                    <form id="signupUser">
+                        <div class="form-group">
+                            <label for="signup-name">Parent's Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password (min 6 characters)</label>
+                            <input type="password" id="signup-password" minlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="child-name">Child's Name</label>
+                            <input type="text" id="child-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="child-age">Child's Age</label>
+                            <input type="number" id="child-age" min="5" max="12" required>
+                        </div>
+                        <div class="form-group">
+                        <button type="submit" class="btn-auth">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="reset-form" class="auth-form">
+                    <h3>Reset Password</h3>
+                    <form id="resetPassword">
+                        <div class="form-group">
+                            <label for="reset-email">Email</label>
+                            <input type="email" id="reset-email" required>
+                        </div>
+                        <button type="submit" class="btn-auth">Send Reset Link</button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Remember your password? <a href="#" id="back-to-login">Login here</a></p>
+                    </div>
+                </div>
+                
+                <div class="auth-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BrightMinds</h4>
+                <p>Interactive learning platform for children aged 5-12</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/?_rdc=1&_rdr#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#subjects">Subjects</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> info@brightminds.com</p>
+                <p><i class="fas fa-phone"></i> +251 987026481</p>
+                <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 BrightMinds Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+<script type="module">
+  // Import only what you need (v10.7.1 is more stable than v12)
+// Import from EITHER CDN OR npm packages - not both
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// Your Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyCdBKJRf3txDt8LQLgKvL9UNUWV7iHw6Bk",
+  authDomain: "brightminds-learninghub.firebaseapp.com",
+  projectId: "brightminds-learninghub",
+  storageBucket: "brightminds-learninghub.appspot.com",
+  messagingSenderId: "598495988704",
+  appId: "1:598495988704:web:5775a73d65e7380fafb985",
+  measurementId: "G-2Z74X8ZVVJ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Make available globally (only if absolutely necessary)
+window.firebaseAuth = auth;
+window.firebaseDb = db;
+
+// Debug logs
+console.log("Firebase initialized successfully");
+console.log("Auth:", auth);
+console.log("Firestore:", db);
+</script>
+<script type="module" src="auth.js"></script>
+</body>
+</html>
