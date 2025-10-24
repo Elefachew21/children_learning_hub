@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard • Kids Smart Learning</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body data-page="dashboard-admin">
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand"><img src="../assets/icons/star.svg" class="brand-icon" alt=""/> Admin Dashboard</div>
+      <nav class="nav-actions">
+        <button id="btnLogout" class="btn btn-outline">Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h3>Manage</h3>
+      <a href="#" class="active" data-view="lessons">Lessons</a>
+      <a href="#" data-view="quizzes">Quizzes</a>
+      <a href="#" data-view="users">Users</a>
+      <a href="#" data-view="stats">Statistics</a>
+    </aside>
+    <main class="content">
+      <div class="toolbar">
+        <div class="brand">Kids Smart Learning</div>
+        <div>
+          <select id="adminSubject">
+            <option value="Amharic">Amharic</option>
+            <option value="Reading">Reading</option>
+            <option value="Maths">Maths</option>
+            <option value="General">General</option>
+          </select>
+          <button id="btnNewLesson" class="btn btn-primary">New Lesson</button>
+        </div>
+      </div>
+
+      <section id="viewLessons" class="grid cols-3"></section>
+
+      <dialog id="dlgLesson">
+        <form method="dialog" id="lessonForm" class="form" style="min-width: min(560px, 96vw);">
+          <h3>Create/Edit Lesson</h3>
+          <div class="input"><label>Subject</label>
+            <select id="lessonSubject">
+              <option value="Amharic">Amharic</option>
+              <option value="Reading">Reading</option>
+              <option value="Maths">Maths</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div class="input"><label>Title</label><input id="lessonTitle" required /></div>
+          <div class="input"><label>Description</label><input id="lessonDesc" required /></div>
+          <div class="input"><label>Difficulty</label>
+            <select id="lessonDifficulty">
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+          <div class="input"><label>Image</label><input id="lessonImage" type="file" accept="image/*" /></div>
+          <div class="input"><label>Audio</label><input id="lessonAudio" type="file" accept="audio/*" /></div>
+          <div class="input"><label>Quiz (JSON)</label><textarea id="lessonQuiz" rows="6" placeholder='[{"question":"...","options":["A","B"],"answer":"A"}]'></textarea></div>
+          <div class="actions">
+            <button id="btnSaveLesson" class="btn btn-success" value="save">Save</button>
+            <button class="btn btn-outline" value="cancel">Cancel</button>
+          </div>
+          <p id="lessonMsg" class="helper"></p>
+        </form>
+      </dialog>
+    </main>
+  </div>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
