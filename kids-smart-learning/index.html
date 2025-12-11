@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kids Smart Learning</title>
+  <meta name="description" content="A playful, modern learning app for kids: Amharic, Reading, Maths, and General Knowledge." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="home">
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <img src="assets/icons/star.svg" alt="Star" class="brand-icon" />
+        <span>Kids Smart Learning</span>
+      </div>
+      <nav class="nav-actions">
+        <button id="btnLogin" class="btn btn-primary">Log in</button>
+        <button id="btnSignup" class="btn btn-accent">Sign up</button>
+        <button id="btnDashboard" class="btn btn-success hidden">Go to Dashboard</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero container">
+    <section class="hero-copy">
+      <h1>Learn, Play, and Grow</h1>
+      <p>Colorful lessons, interactive quizzes, and friendly rewards to keep kids engaged and learning every day.</p>
+      <div class="hero-cta">
+        <button id="btnGetStarted" class="btn btn-lg btn-primary">Get Started</button>
+        <button id="btnExplore" class="btn btn-lg btn-outline">Explore Subjects</button>
+      </div>
+    </section>
+    <section class="hero-art">
+      <div class="floating-badges">
+        <span class="badge badge-star">⭐</span>
+        <span class="badge badge-heart">❤️</span>
+        <span class="badge badge-book">📚</span>
+      </div>
+      <img src="assets/images/hero_kids.svg" alt="Happy kids learning" onerror="this.style.display='none'" />
+    </section>
+  </main>
+
+  <section class="subjects container">
+    <h2>Subjects</h2>
+    <div class="subject-grid">
+      <a class="card subject amharic" href="pages/amharic.html">
+        <div class="icon">🔤</div>
+        <h3>Amharic</h3>
+        <p>Letters, words, and pronunciation.</p>
+      </a>
+      <a class="card subject reading" href="pages/reading.html">
+        <div class="icon">📖</div>
+        <h3>Reading</h3>
+        <p>English letters, words, and simple sentences.</p>
+      </a>
+      <a class="card subject maths" href="pages/maths.html">
+        <div class="icon">🔢</div>
+        <h3>Maths</h3>
+        <p>Numbers, shapes, and operations.</p>
+      </a>
+      <a class="card subject general" href="pages/general.html">
+        <div class="icon">🌍</div>
+        <h3>General Knowledge</h3>
+        <p>Animals, nature, and Ethiopia facts.</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Kids Smart Learning • Made for curious minds</p>
+      <div class="footer-links">
+        <a href="pages/login.html">Login</a>
+        <a href="pages/signup.html">Sign up</a>
+        <a href="#" id="footerDashboard" class="hidden">Dashboard</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

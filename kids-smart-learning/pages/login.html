@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login • Kids Smart Learning</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-page="login">
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand"><img src="../assets/icons/star.svg" class="brand-icon" alt=""/> Kids Smart Learning</div>
+      <nav class="nav-actions"><a class="link" href="signup.html">Create account</a></nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="form-card">
+      <h2>Welcome back</h2>
+      <p class="helper">Log in to continue learning</p>
+      <form id="loginForm" class="form">
+        <div class="input"><label for="email">Email</label><input id="email" type="email" required placeholder="you@example.com"/></div>
+        <div class="input"><label for="password">Password</label><input id="password" type="password" required placeholder="••••••••"/></div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Log in</button>
+          <a href="signup.html" class="link">Sign up</a>
+        </div>
+        <p id="loginMsg" class="helper"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Kids Smart Learning</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* Dashboard layouts */
+.dashboard{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 72px)}
+.sidebar{background:#111827;color:#e5e7eb;display:flex;flex-direction:column;gap:8px;padding:16px}
+.sidebar h3{margin:6px 0 8px;color:#fff;font-family:Fredoka, Inter, sans-serif}
+.sidebar a{color:#e5e7eb;text-decoration:none;padding:10px 12px;border-radius:10px}
+.sidebar a.active, .sidebar a:hover{background:#374151}
+.content{background:#f9fafb;padding:16px}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.grid{display:grid;gap:12px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border-radius:14px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:14px}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.table th{text-align:left;color:#6b7280;font-weight:700}
+.table td, .table th{padding:10px 8px}
+.table tr{background:#fff;border-radius:10px}
+.table tr:hover{box-shadow:0 8px 18px rgba(0,0,0,.06)}
+
+@media (max-width: 980px){
+  .dashboard{grid-template-columns:1fr}
+  .sidebar{position:sticky;top:64px;z-index:2}
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "subject": "Maths",
+    "lessonTitle": "Counting to 10",
+    "content": "Learn how to count from 1 to 10",
+    "imageUrl": "assets/images/counting.png",
+    "audioUrl": "assets/sounds/counting.mp3",
+    "quiz": [
+      { "question": "What comes after 5?", "options": ["4", "6", "7"], "answer": "6" }
+    ]
+  },
+  {
+    "subject": "Amharic",
+    "lessonTitle": "Fidel Basics",
+    "content": "Learn ሀ to ሆ",
+    "imageUrl": "assets/images/fidel.png",
+    "audioUrl": "assets/sounds/fidel.mp3",
+    "quiz": [
+      { "question": "What is the letter after ሀ?", "options": ["ሁ", "ሄ", "ሆ"], "answer": "ሁ" }
+    ]
+  }
+]

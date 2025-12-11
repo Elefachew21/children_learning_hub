@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reading • Kids Smart Learning</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-page="reading">
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">📖 Reading</div>
+      <nav class="nav-actions">
+        <a class="btn btn-outline" href="dashboard_student.html">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div class="lessons-header">
+      <h2>Letters, Words, Sentences</h2>
+      <div class="progress"><span id="subjectProgress" style="width: 0%"></span></div>
+    </div>
+    <div id="lessons" class="lesson-grid"></div>
+  </main>
+
+  <dialog id="dlgQuiz">
+    <form method="dialog" id="quizForm" class="form" style="min-width: min(560px, 96vw)">
+      <h3 id="quizTitle">Quiz</h3>
+      <div id="quizBody" class="form"></div>
+      <div class="actions">
+        <button id="btnSubmitQuiz" class="btn btn-success" value="submit">Submit</button>
+        <button class="btn btn-outline" value="cancel">Cancel</button>
+      </div>
+      <p id="quizMsg" class="helper"></p>
+    </form>
+  </dialog>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

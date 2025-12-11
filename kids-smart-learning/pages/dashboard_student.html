@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Dashboard • Kids Smart Learning</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body data-page="dashboard-student">
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand"><img src="../assets/icons/star.svg" class="brand-icon" alt=""/> Student Dashboard</div>
+      <nav class="nav-actions">
+        <button id="btnToSubjects" class="btn btn-outline">Subjects</button>
+        <button id="btnLogout" class="btn btn-outline">Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h3>My Progress</h3>
+      <div class="stat"><h3>Points</h3><div id="statPoints">0</div></div>
+      <div class="stat"><h3>Stars</h3><div id="statStars">0</div></div>
+      <div class="stat"><h3>Badges</h3><div id="statBadges">0</div></div>
+    </aside>
+    <main class="content">
+      <div class="toolbar">
+        <div class="brand">Keep learning!</div>
+        <div class="progress" style="width:220px"><span id="overallProgress" style="width:0%"></span></div>
+      </div>
+
+      <section class="grid cols-2">
+        <a class="card" href="amharic.html">🔤 Amharic</a>
+        <a class="card" href="reading.html">📖 Reading</a>
+        <a class="card" href="maths.html">🔢 Maths</a>
+        <a class="card" href="general.html">🌍 General Knowledge</a>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h3>Leaderboard (Top 10)</h3>
+        <ol id="leaderboard"></ol>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
